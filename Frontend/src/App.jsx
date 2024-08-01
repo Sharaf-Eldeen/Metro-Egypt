@@ -4,6 +4,16 @@ import Result from "./Result";
 import blacktrain from "./assets/blacktrain.jpg";
 import axios from "axios";
 
+async function getStations() {
+  try {
+    const response = await axios.get("http://localhost:5500/metro/getStations");
+    return response.data;
+  } catch (error) {
+    console.error("Error in fetching stations", error);
+    return [];
+  }
+}
+
 function App() {
   const [stations, setStations] = useState([]);
   const [path, setPath] = useState([]);
