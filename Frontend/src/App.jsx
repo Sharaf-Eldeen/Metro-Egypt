@@ -14,6 +14,24 @@ async function getStations() {
   }
 }
 
+async function getPath(data) {
+  try {
+    const response = await axios.post(
+      "http://localhost:5500/metro/getPath",
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error in fetching the path", error);
+    return [];
+  }
+}
+
 function App() {
   const [stations, setStations] = useState([]);
   const [path, setPath] = useState([]);
